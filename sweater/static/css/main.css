@@ -1,0 +1,12 @@
+.sticky-top {
+    background-color: rgba(255,255,255,0.9);;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc4c64;
+    color: white;
+}

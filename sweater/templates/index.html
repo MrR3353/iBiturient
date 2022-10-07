@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+<!--Display active page button (toggle classes for buttons)-->
+{% block home %}
+active
+{% endblock %}
+
+<!--{% block directions %}-->
+
+<!--{% endblock %}-->
+
+<!--{% block create %}-->
+
+<!--{% endblock %}-->
+
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+
+
+{% block body %}
+
+<h1>Введите свои баллы: </h1>
+<!--<div class="form-floating mb-3 w-25">-->
+<!--            <input type="email" class="form-control" id="floatingInput" placeholder="0">-->
+<!--            <label for="floatingInput">Информатика</label>-->
+<!--</div>-->
+
+<!--Input forms-->
+<form action="/directions" method="get">
+  <div class="row">
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+<!--                    Getting min and max scores from db-->
+                    <input name="rus" id="rus" type="number" min="{{ Subject.query.filter_by(name = 'Русский язык').first().min_score }}" max="{{ Subject.query.filter_by(name = 'Русский язык').first().max_score }}" class="form-control" placeholder="0">
+                    <label>Русский язык</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="math" id="math" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Математика</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="phys" id="phys" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Физика</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="chem" id="chem" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Химия</label>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="hist" id="hist" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>История</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="soc" id="soc" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Обществознание</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="inf" id="inf" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Информатика и ИКТ</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="bio" id="bio" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Биология</label>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="geo" id="geo" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>География</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="lang" id="lang" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Иностранный язык</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="litr" id="litr" type="number" min="36" max="100" class="form-control" placeholder="0">
+                    <label>Литература</label>
+        </div>
+    </div>
+    <div class="col-sm">
+        <div class="form-floating mb-3 w-75">
+                    <input name="extra" id="extra" type="number" min="1" max="110" class="form-control" placeholder="0">
+                    <label>Доп. баллы*</label>
+        </div>
+    </div>
+  </div>
+
+    <p>*При наличии вступительных экзаменов в ВУЗ, прибавьте набранные баллык к Доп. баллам</p>
+
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="paid" value="paid">
+      <label class="form-check-label" for="paid">
+        Платное
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="flexRadioDefault" id="budget" value="budget" checked>
+      <label class="form-check-label" for="budget">
+        Бюджет
+      </label>
+    </div>
+
+   <br>
+
+   <div class="row">
+       <div class="col-sm">
+       </div>
+       <div class="col-sm text-center">
+           <button type="submit" class="btn btn-secondary btn-lg btn-block">Подобрать направления</button>
+       </div>
+       <div class="col-sm text-end">
+           <button type="button" id="clear" class="btn btn-outline-danger">Очистить все</button>
+       </div>
+   </div>
+</form>
+
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>-->
+<script src="./static/js/index.js"></script>
+{% endblock %}

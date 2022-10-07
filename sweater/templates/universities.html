@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block login %}
+<!--active-->
+{% endblock %}
+
+{% block title %}
+ВУЗы
+{% endblock %}
+
+{% block body %}
+    {% for univ in universities %}
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">{{ univ.name }}</h4>
+            <p>{{ univ.full_name }}</p>
+            <p>Город: {{ univ.city }}</p>
+            <a href="https://vuzopedia.ru/vuz/{{ univ.vuzopedia_id }}">Подробнее</a>
+        </div>
+    {% endfor %}
+{% endblock %}

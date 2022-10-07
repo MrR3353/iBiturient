@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block login %}
+<!--active-->
+{% endblock %}
+
+{% block title %}
+Форум
+{% endblock %}
+
+{% block body %}
+
+<!--    FORM FOR NEW COMMENT-->
+        <form method="post">
+            <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
+              <h3>{{ current_user.name }}</h3>
+              <div class="d-flex flex-start w-100">
+                <div class="form-outline w-100">
+                  <textarea class="form-control" name="text" id="text" rows="4" style="background: #fff;"></textarea>
+                  <label class="form-label" for="text" style="margin-left: 0px;">Message</label>
+                <div class="form-notch"><div class="form-notch-leading" style="width: 9px;"></div><div class="form-notch-middle" style="width: 60px;"></div><div class="form-notch-trailing"></div></div></div>
+              </div>
+              <div class="float-end mt-2 pt-1">
+                <button type="submit" class="btn btn-primary btn-sm">Post comment</button>
+              </div>
+                <br>
+                <br>
+            </div>
+        </form>
+
+<!--STATUS-->
+{% with messages = get_flashed_messages() %}
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          {{ message }}
+          <a href="/login"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+
+
+<!--    ALL COMMENTS-->
+    {% for com in comments %}
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <div class="">
+                <h5>{{ User.query.filter_by(id = com.user_id).first().name }}</h5>
+                <p class="small">{{ com.date }}</p>
+                <p>
+                  {{ com.text }}
+                </p>
+
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="d-flex align-items-center">
+                    <a href="#!" class="link-muted me-2"><img src="./static/bootstrap-5.2.1-dist/icons/hand-thumbs-up.svg" alt="Bootstrap" width="20" height="20">132</a>
+                    <a href="#!" class="link-muted"><img src="./static/bootstrap-5.2.1-dist/icons/hand-thumbs-down.svg" alt="Bootstrap" width="20" height="20">15</a>
+                  </div>
+                  <a href="#!" class="link-muted"><i class="fas fa-reply me-1"></i> Reply</a>
+                </div>
+              </div>
+            </div>
+          </div>
+    {% endfor %}
+{% endblock %}

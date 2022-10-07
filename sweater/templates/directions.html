@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+<!--Display active page button (toggle classes for buttons)-->
+<!--{% block home %}-->
+
+<!--{% endblock %}-->
+
+{% block directions %}
+active
+{% endblock %}
+
+<!--{% block create %}-->
+
+<!--{% endblock %}-->
+
+{% block title %}
+Направления
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <h1>Найдено направлений: {{directions|length}}</h1>
+    </div>
+    <div class="col-sm">
+        {% if points_sum %}
+            <h3 class="text-end">Сумма баллов по всем предметам: {{ points_sum }}</h3>
+        {% endif %}
+    </div>
+  </div>
+</div>
+
+
+{% for dir in directions %}
+<div class="alert alert-secondary" role="alert">
+          <h4 class="alert-heading">{{ dir.name }}</h4>
+          Университет: <a href="/universities">{{ dir.university }}</a>
+          <p>Форма обучения: {{ dir.ed_form }}</p>
+          <p>Предметы: {{ dir.subjects }}</p>
+          <hr>
+          Бюджет: <span class="badge
+<!--          Display in green color if user can enroll on that direction and gray if not
+              IF there is None in DB or user looks direrction without filters need display gray color -->
+          {% if dir.budget != None and scored_direction_points and scored_direction_points[loop.index-1] >= dir.budget %}
+              bg-success
+          {% else %}
+              bg-secondary
+          {% endif %}
+          ">
+<!--            IF there is None in DB display 'Нет'-->
+          {% if dir.budget == None %}
+              Нет
+          {% else %}
+            {{ dir.budget }}
+          {% endif %}
+          </span>
+          Платное: <span class="badge
+<!--          Display in green color if user can enroll on that direction and gray if not
+              IF there is None in DB or user looks direrction without filters need display gray color -->
+          {% if dir.paid != None and scored_direction_points and scored_direction_points[loop.index-1] >= dir.paid %}
+              bg-success
+          {% else %}
+              bg-secondary
+          {% endif %}
+          ">
+    <!--            IF there is None in DB display 'Нет'-->
+          {% if dir.paid == None %}
+              Нет
+          {% else %}
+            {{ dir.paid }}
+          {% endif %}
+          </span>
+          <a href="/directions/{{dir.id}}/delete" class="btn btn-outline-danger p-1 align-middle">Удалить</a>
+          {% if scored_direction_points %}
+              Набрано: <b>{{ scored_direction_points[loop.index-1] }}</b>
+          {% endif %}
+</div>
+
+{% endfor %}
+
+{% endblock %}

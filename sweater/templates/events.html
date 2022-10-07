@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block login %}
+<!--active-->
+{% endblock %}
+
+{% block title %}
+События
+{% endblock %}
+
+{% block body %}
+
+<h1>События на сайте: </h1>
+<!--    ALL COMMENTS-->
+    {% for log in logs %}
+          <div class="card w-100">
+            <div class="card-body p-4">
+              <div class="">
+                <h5>
+                    Пользователь <b>{{ User.query.filter_by(id = log.user_id).first().name }}</b>
+                    {% if log.text == 'Register' %}
+                    зарегистрировался на сайте!
+                    {% elif log.text == 'Log out' %}
+                    вышел =(
+                    {% elif log.text == 'Log in' %}
+                    вернулся)
+                    {% elif log.text == 'Comment' %}
+                    оставил комментарий (o_O)
+                    {% endif %}
+                </h5>
+                <p class="small">{{ log.date }}</p>
+              </div>
+            </div>
+          </div>
+    {% endfor %}
+{% endblock %}

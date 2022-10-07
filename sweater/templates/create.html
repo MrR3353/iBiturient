@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block create %}
+active
+{% endblock %}
+
+{% block title %}
+Добавить направление
+{% endblock %}
+
+
+{% block body %}
+<h1>Добавьте новое направление:</h1>
+
+<form method="post">
+    <div class="form-floating mb-3 w-75">
+        <input type="text" name="name" id="name" class="form-control" placeholder="0">
+        <label>Название направления</label>
+    </div>
+    <div class="form-floating mb-3 w-75">
+        <input type="text" name="university" id="university" class="form-control" placeholder="0">
+        <label>ВУЗ</label>
+    </div>
+    <div class="form-floating mb-3 w-75">
+        <input type="text" name="ed_form" id="ed_form" class="form-control" placeholder="0">
+        <label>Форма обучения</label>
+    </div>
+    <div class="form-floating mb-3 w-75">
+        <input type="text" name="subjects" id="subjects" class="form-control" placeholder="0">
+        <label>Список необходимых предметов</label>
+    </div>
+    <div class="form-floating mb-3 w-75">
+        <input type="number" name="budget" id="budget" class="form-control" placeholder="0" required>
+        <label>Баллы бюджет</label>
+    </div>
+    <div class="form-floating mb-3 w-75">
+        <input type="number" name="paid" id="paid" class="form-control" placeholder="0" required>
+        <label>Баллы платное</label>
+    </div>
+    <input type="submit" class="btn btn-primary" value="Добавить">
+</form>
+
+<br>
+
+{% if status == 'OK' %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+          Направление успешно добавлено!
+          <a href="/create"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+</div>
+{% endif %}
+
+{% if status == 'ERROR' %}
+<div class="alert alert-danger alert-dismissible fade show" role="alert">
+          При добавлении направления произошла ошибка.
+          <a href="/create"><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></a>
+</div>
+{% endif %}
+
+
+{% endblock %}
